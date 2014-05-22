@@ -1,0 +1,6 @@
+#!/bin/sh
+if [ "x$1" = "x-d" ]; then
+	"./build/ensambla" -d main print imprime_decimal matrix_introduce matrix_print matrix_multiply
+else
+	"./build/ensambla" main print imprime_decimal matrix_introduce matrix_print matrix_multiply
+fi

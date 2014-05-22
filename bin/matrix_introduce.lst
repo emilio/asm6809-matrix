@@ -1,0 +1,81 @@
+ASxxxx Assembler V05.00  (Motorola 6809), page 1.
+Hexidecimal [16-Bits]
+
+
+
+                              1 ;   +---------------------------------------------+
+                              2 ;   |            matrix_introduce.asm             |
+                              3 ;   +---------------------------------------------+
+                              4 ;   | @author Emilio Cobos <emiliocobos@usal.es>  |
+                              5 ;   +---------------------------------------------+
+                              6 			.module	matrix_introduce
+                              7 			.globl	STDIN
+                              8 			.globl	STDOUT
+                              9 
+                             10 			.globl	matrix_introduce
+                             11 
+                             12 ;   +--------------------------------------------+
+                             13 ;   |                matrix_introduce            |
+                             14 ;   +--------------------------------------------+
+                             15 ;   | Fill data of a matrix with numbers from 0  |
+                             16 ;   | to 9                                       |
+                             17 ;   +--------------------------------------------+
+                             18 ;   | @param x                                   |
+                             19 ;   +--------------------------------------------+
+   0000                      20 matrix_introduce:
+   0000 36 16         [ 8]   21 			pshu	a,b,x
+   0002 C6 00         [ 2]   22 			ldb	#0
+                             23 
+   0004                      24 matrix_introduce_loop:
+   0004 C1 09         [ 2]   25 			cmpb	#9
+   0006 27 1E         [ 3]   26 			beq	matrix_introduce_end
+                             27 
+   0008 B6 00 00      [ 5]   28 			lda	STDIN
+   000B 80 30         [ 2]   29 			suba	#'0
+                             30 
+   000D A7 85         [ 5]   31 			sta	b,x
+                             32 
+   000F 86 09         [ 2]   33 			lda	#'\t
+   0011 B7 00 00      [ 5]   34 			sta	STDOUT
+                             35 
+   0014 C1 02         [ 2]   36 			cmpb	#2
+   0016 27 06         [ 3]   37 			beq	matrix_introduce_print_newline
+                             38 
+   0018 C1 05         [ 2]   39 			cmpb	#5
+   001A 27 02         [ 3]   40 			beq	matrix_introduce_print_newline
+                             41 
+   001C 20 05         [ 3]   42 			bra	matrix_introduce_skip_newline
+                             43 
+   001E                      44 matrix_introduce_print_newline:
+   001E 86 0A         [ 2]   45 			lda	#'\n
+   0020 B7 00 00      [ 5]   46 			sta	STDOUT
+                             47 
+   0023                      48 matrix_introduce_skip_newline:
+   0023 5C            [ 2]   49 			incb
+   0024 20 DE         [ 3]   50 			bra	matrix_introduce_loop
+                             51 
+   0026                      52 matrix_introduce_end:
+   0026 37 16         [ 8]   53 			pulu	a,b,x
+   0028 39            [ 5]   54 			rts
+ASxxxx Assembler V05.00  (Motorola 6809), page 2.
+Hexidecimal [16-Bits]
+
+Symbol Table
+
+    .__.$$$.       =   2710 L   |     .__.ABS.       =   0000 G
+    .__.CPU.       =   0000 L   |     .__.H$L.       =   0001 L
+    STDIN              **** GX  |     STDOUT             **** GX
+  0 matrix_introdu     0000 GR  |   0 matrix_introdu     0026 R
+  0 matrix_introdu     0004 R   |   0 matrix_introdu     001E R
+  0 matrix_introdu     0023 R
+
+ASxxxx Assembler V05.00  (Motorola 6809), page 3.
+Hexidecimal [16-Bits]
+
+Area Table
+
+[_CSEG]
+   0 _CODE            size   29   flags C180
+[_DSEG]
+   1 _DATA            size    0   flags C0C0
+

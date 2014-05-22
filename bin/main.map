@@ -1,0 +1,50 @@
+ASxxxx Linker V05.00,  page 1.
+Hexidecimal  [16-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+.  .ABS.                   0000        0000 =           0. bytes (ABS,OVR,CSEG)
+
+         Value  Global                             Global Defined In Module
+         -----  --------------------------------   ------------------------
+          0000  l__DATA                         
+          0000  s__DATA                         
+          0000  s__CODE                         
+          0000  .__.ABS.                           main
+          0000  l_PR_END                        
+          0000  s_PR_END                        
+          0293  l__CODE                         
+          FF00  STDOUT                             print
+          FF02  STDIN                              print
+
+ASxxxx Linker V05.00,  page 2.
+Hexidecimal  [16-Bits]
+[ Bank == _CSEG ]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                      0000        0293 =         659. bytes (REL,CON,CSEG)
+
+         Value  Global                             Global Defined In Module
+         -----  --------------------------------   ------------------------
+          00B2  PROGRAM_START                      main
+          00EC  print                              print
+          00FA  imprime_decimal                    imprime_decimal
+          01D3  matrix_introduce                   matrix_introduce
+          01FC  matrix_print                       matrix_print
+          022B  MATRIX_MULTIPLY_RESULT             matrix_multiply
+          0278  matrix_multiply                    matrix_multiply
+
+ASxxxx Linker V05.00,  page 3.
+
+Files Linked                              [ module(s) ]
+
+./build/../bin/main.rel                   [ main ]
+./build/../bin/print.rel                  [ print ]
+./build/../bin/imprime_decimal.rel        [ imprime_decimal ]
+./build/../bin/matrix_introduce.rel       [ matrix_introduce ]
+./build/../bin/matrix_print.rel           [ matrix_print ]
+./build/../bin/matrix_multiply.rel        [ matrix_multiply ]
+
+
+

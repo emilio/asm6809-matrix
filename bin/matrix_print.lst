@@ -1,0 +1,81 @@
+ASxxxx Assembler V05.00  (Motorola 6809), page 1.
+Hexidecimal [16-Bits]
+
+
+
+                              1 ;   +---------------------------------------------+
+                              2 ;   |               matrix_print.asm              |
+                              3 ;   +---------------------------------------------+
+                              4 ;   | @author Emilio Cobos <emiliocobos@usal.es>  |
+                              5 ;   +---------------------------------------------+
+                              6 			.module matrix_print
+                              7 			.globl	matrix_print
+                              8 			.globl	imprime_decimal
+                              9 			.globl	STDOUT
+                             10 
+                             11 ;   +--------------------------------------------+
+                             12 ;   |                matrix_print                |
+                             13 ;   +--------------------------------------------+
+                             14 ;   | @param x                                   |
+                             15 ;   +--------------------------------------------+
+   0000                      16 matrix_print:
+   0000 36 16         [ 8]   17 			pshu	a,b,x
+                             18 
+   0002 86 00         [ 2]   19 			lda	#0
+                             20 
+   0004                      21 matrix_print_loop:
+   0004 81 09         [ 2]   22 			cmpa	#9
+   0006 27 21         [ 3]   23 			beq	matrix_print_end
+                             24 
+   0008 E6 86         [ 5]   25 			ldb	a,x
+   000A 36 02         [ 6]   26 			pshu	a
+   000C 4F            [ 2]   27 			clra
+   000D BD 00 00      [ 8]   28 			jsr	imprime_decimal
+   0010 37 02         [ 6]   29 			pulu	a
+                             30 			; addb	#'0
+                             31 			; stb	STDOUT
+                             32 
+   0012 C6 09         [ 2]   33 			ldb	#'\t
+   0014 F7 00 00      [ 5]   34 			stb	STDOUT
+                             35 
+   0017 81 02         [ 2]   36 			cmpa	#2
+   0019 27 06         [ 3]   37 			beq	matrix_print_print_newline
+                             38 
+   001B 81 05         [ 2]   39 			cmpa	#5
+   001D 27 02         [ 3]   40 			beq	matrix_print_print_newline
+                             41 
+   001F 20 05         [ 3]   42 			bra	matrix_print_skip_newline
+                             43 
+   0021                      44 matrix_print_print_newline:
+   0021 C6 0A         [ 2]   45 			ldb	#'\n
+   0023 F7 00 00      [ 5]   46 			stb	STDOUT
+                             47 
+   0026                      48 matrix_print_skip_newline:
+   0026 4C            [ 2]   49 			inca
+   0027 20 DB         [ 3]   50 			bra	matrix_print_loop
+                             51 
+   0029                      52 matrix_print_end:
+   0029 37 16         [ 8]   53 			pulu	a,b,x
+   002B 39            [ 5]   54 			rts
+ASxxxx Assembler V05.00  (Motorola 6809), page 2.
+Hexidecimal [16-Bits]
+
+Symbol Table
+
+    .__.$$$.       =   2710 L   |     .__.ABS.       =   0000 G
+    .__.CPU.       =   0000 L   |     .__.H$L.       =   0001 L
+    STDOUT             **** GX  |     imprime_decima     **** GX
+  0 matrix_print       0000 GR  |   0 matrix_print_e     0029 R
+  0 matrix_print_l     0004 R   |   0 matrix_print_p     0021 R
+  0 matrix_print_s     0026 R
+
+ASxxxx Assembler V05.00  (Motorola 6809), page 3.
+Hexidecimal [16-Bits]
+
+Area Table
+
+[_CSEG]
+   0 _CODE            size   2C   flags C180
+[_DSEG]
+   1 _DATA            size    0   flags C0C0
+

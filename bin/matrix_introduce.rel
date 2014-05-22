@@ -1,0 +1,34 @@
+XH2
+H 2 areas 4 global symbols 2 banks 1 modes
+M matrix_introduce
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S STDIN Ref0000
+S .__.ABS. Def0000
+S STDOUT Ref0000
+A _CODE size 29 flags CD80 bank 0
+S matrix_introduce Def0000
+A _DATA size 0 flags CCC0 bank 1
+T 00 00
+R 00 00 00 00
+T 00 00 36 16 C6 00
+R 00 00 00 00
+T 00 04
+R 00 00 00 00
+T 00 04 C1 09 27 1E B6 00 00 80 30 A7 85 86 09
+R 00 00 00 00 81 07 00 00
+T 00 11 B7 00 00 C1 02 27 06 C1 05 27 02 20 05
+R 00 00 00 00 81 03 00 02
+T 00 1E
+R 00 00 00 00
+T 00 1E 86 0A B7 00 00
+R 00 00 00 00 81 05 00 02
+T 00 23
+R 00 00 00 00
+T 00 23 5C 20 DE
+R 00 00 00 00
+T 00 26
+R 00 00 00 00
+T 00 26 37 16 39
+R 00 00 00 00
